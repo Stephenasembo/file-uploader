@@ -6,6 +6,7 @@ async function createUser(username, password) {
   const user = await prisma.users.create({
     data: { username, password }
   })
+  return user;
 }
 
 async function findUser(id = null, username = null) {

@@ -12,8 +12,11 @@ module.exports = {
   createUser: async (req, res, next) => {
     const { username, password } = req.body;
     const hashedPassword = await passwordUtil.hashPassword(password);
-    await service.createUser(username, hashedPassword);
-    res.send('Account created')
+    const user = await service.createUser(username, hashedPassword);
+    req.login(user, (err) => {
+      if (err) return next(err)
+      return res.redirect('/app')
+    })
   },
   loginUser: passport.authenticate('local', {
     successRedirect: '/app',
