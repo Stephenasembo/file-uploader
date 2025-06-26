@@ -1,3 +1,4 @@
+const passport = require('../config/passport')
 const service = require('../queries/user')
 const passwordUtil = require('../utils/passwordUtil')
 
@@ -17,7 +18,11 @@ module.exports = {
     await service.createUser(username, hashedPassword);
     res.send('Account created')
   },
-  loginUser: (req, res, next) => {
-    res.send('User logged in')
-  },
+  loginUser: passport.authenticate('local', {
+    successRedirect: '/app',
+    failureRedirect: '/login',
+  }),
+  getHomepage: (req, res, next) => {
+    res.render('homepage')
+  }
 }
