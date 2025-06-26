@@ -3,7 +3,7 @@ const express = require('express');
 const expressSession = require('express-session');
 const { PrismaSessionStore } = require('@quixo3/prisma-session-store');
 const { PrismaClient } = require('./generated/prisma');
-
+const indexRouter = require('./routes/indexRouter');
 
 const app = express();
 
@@ -34,9 +34,7 @@ app.use(express.json());
 app.set('views', 'views')
 app.set('view engine', 'ejs')
 
-app.get('/', (req, res, next) => {
-  res.render('index')
-})
+app.use('/', indexRouter)
 
 app.listen(PORT, () => {
   console.log(`The app is live on port - ${PORT}`)
