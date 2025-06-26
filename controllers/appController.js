@@ -1,5 +1,7 @@
+const authorizeUser = require("../middleware/authorizeUser");
+
 module.exports = {
-  getHomepage: (req, res, next) => {
+  getHomepage: [authorizeUser, (req, res, next) => {
     res.render('homepage')
-  }
+  }]
 }
