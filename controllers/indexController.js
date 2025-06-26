@@ -1,3 +1,6 @@
+const service = require('../queries/user')
+const passwordUtil = require('../utils/passwordUtil')
+
 module.exports = {
   getIndex: (req, res, next) => {
     res.render('index')
@@ -8,7 +11,10 @@ module.exports = {
   getLoginForm: (req, res, next) => {
     res.render('login')
   },
-  createUser: (req, res, next) => {
+  createUser: async (req, res, next) => {
+    const { username, password } = req.body;
+    const hashedPassword = await passwordUtil.hashPassword(password);
+    await service.createUser(username, hashedPassword);
     res.send('Account created')
   },
   loginUser: (req, res, next) => {
