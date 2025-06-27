@@ -1,7 +1,11 @@
-const authorizeUser = require("../middleware/authorizeUser");
-
 module.exports = {
-  getHomepage: [authorizeUser, (req, res, next) => {
+  getHomepage: (req, res, next) => {
     res.render('homepage')
-  }]
+  },
+  getUploadForm: (req, res, next) => {
+    res.render('upload-form')
+  },
+  uploadFile: (req, res, next) => {
+    res.send('File uploaded')
+  }
 }
