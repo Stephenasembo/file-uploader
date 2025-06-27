@@ -15,9 +15,10 @@ datasource db {
 }
 
 model Users {
-  id       String @id @default(uuid())
-  username String @unique
+  id       String   @id @default(uuid())
+  username String   @unique
   password String
+  folders  Folder[]
 }
 
 model Session {
@@ -25,4 +26,12 @@ model Session {
   sid       String   @unique
   data      String
   expiresAt DateTime
+}
+
+model Folder {
+  id        String   @id @default(uuid())
+  name      String   @unique
+  createdAt DateTime @default(now())
+  Users     Users?   @relation(fields: [usersId], references: [id])
+  usersId   String?
 }
