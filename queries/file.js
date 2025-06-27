@@ -18,7 +18,15 @@ async function createFile({name, size, uploadedAt, folderId}) {
   return file;
 }
 
+async function getFile(id) {
+  const file = await prisma.files.findFirst({
+    where: { id }
+  })
+  return file;
+}
+
 module.exports = {
   getFolderFiles,
   createFile,
+  getFile,
 }

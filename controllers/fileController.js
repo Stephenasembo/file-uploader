@@ -14,4 +14,9 @@ module.exports = {
     await fileService.createFile(file)
     res.send('File uploaded')
   }],
+  getFileDetails: async(req, res, next) => {
+    const id = req.params.fileId;
+    const file = await fileService.getFile(id);
+    res.render('file-page', { file })
+  }
 }
