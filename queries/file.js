@@ -9,10 +9,10 @@ async function getFolderFiles(folderId) {
   return files;
 }
 
-async function createFile({name, size, uploadedAt, folderId}) {
+async function createFile({name, size, folderId, storagePath}) {
   const file = await prisma.files.create({
     data: {
-      name, size, folderId
+      name, size, folderId, storagePath
     }
   })
   return file;

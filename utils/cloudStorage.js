@@ -14,6 +14,10 @@ async function uploadFile(userId, file) {
   return data;
 }
 
+async function downloadFile(id) {
+
+}
+
 module.exports = {
   uploadFile,
 }

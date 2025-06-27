@@ -14,7 +14,8 @@ module.exports = {
       size: req.file.size,
       folderId: req.params.folderId,
     }
-    await cloudStorage.uploadFile(req.user.id, req.file);
+    const uploadedFile = await cloudStorage.uploadFile(req.user.id, req.file);
+    file.storagePath = uploadedFile.path
     await fileService.createFile(file)
     res.send('File uploaded')
   }],
@@ -22,5 +23,5 @@ module.exports = {
     const id = req.params.fileId;
     const file = await fileService.getFile(id);
     res.render('file-page', { file })
-  }
+  },
 }
