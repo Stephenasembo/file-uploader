@@ -1,4 +1,5 @@
 const folderService = require('../queries/folder')
+const fileService = require('../queries/file')
 
 module.exports = {
   getCreateFolderForm: (req, res, next) => {
@@ -11,7 +12,8 @@ module.exports = {
   getFolderPage: async(req, res, next) => {
     const id = req.params.folderId;
     const folder = await folderService.getFolder(id);
-    res.render('folder-page', { folder })
+    const files = await fileService.getFolderFiles(id);
+    res.render('folder-page', { folder, files })
   },
   getUpdateFolderForm: (req, res, next) => {
     res.render('folder-update-form');
@@ -26,5 +28,5 @@ module.exports = {
     const id = req.params.folderId;
     const folder = await folderService.deleteFolder(id);
     res.redirect('/app')
-  }
+  },
 }

@@ -9,6 +9,14 @@
   <h1><%= folder.name%></h1>
   <div>
     <h2>Files In <%= folder.name%>: </h2>
+    <% if(files.length !== 0) { %>
+      <% files.forEach((file) => { %>
+        <p>
+          <%= file.name%> <br><br>
+          <a href="/app/file/<%= file.id%>">View File Details</a>
+        </p>
+      <% }) %>
+      <% } %>
     <div>
       Add files to this folder: 
       <a href="/app/file/upload/<%= folder.id%>">Upload File</a>
