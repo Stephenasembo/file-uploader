@@ -21,5 +21,10 @@ module.exports = {
     const newName = req.body.folderName
     const folder = await folderService.updateFolder(newName, id);
     res.redirect(`/app/folder/${id}`)
+  },
+  deleteFolder: async (req, res, next) => {
+    const id = req.params.folderId;
+    const folder = await folderService.deleteFolder(id);
+    res.redirect('/app')
   }
 }

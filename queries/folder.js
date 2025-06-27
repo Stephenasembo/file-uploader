@@ -31,9 +31,17 @@ async function updateFolder(name, id) {
   return folder;
 }
 
+async function deleteFolder(id) {
+  const folder = await prisma.folder.delete({
+    where: { id }
+  })
+  return folder;
+}
+
 module.exports = {
   createFolder,
   getUserFolders,
   getFolder,
   updateFolder,
+  deleteFolder,
 }

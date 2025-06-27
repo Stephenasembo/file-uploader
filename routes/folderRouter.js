@@ -6,5 +6,6 @@ router.post('/create', controller.createFolder);
 router.get('/:folderId', controller.getFolderPage);
 router.get('/:folderId/update', controller.getUpdateFolderForm);
 router.post('/:folderId/update', controller.updateFolder);
+router.get('/:folderId/delete', controller.deleteFolder);
 
 module.exports = router;
