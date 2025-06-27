@@ -10,13 +10,14 @@
   <div>
     <div>
       <h2>Folders:</h2>
-      <p>
-        <a href="/app/folder/default">Default Folder</a>
-        <br><br>
-        <a href="/app/folder/folder1">Folder 1</a>
-        <br><br>
-        <a href="/app/folder/create">Create new folder</a>
-      </p>
+      <% if(folders.length !== 0) { %>
+        <p>
+          <% folders.forEach((folder) => { %>
+            <a href="/app/folder/<%= folder.id%>"><%= folder.name%></a>
+          <% }) %>
+        </p>
+      <% } %>
+    <a href="/app/folder/create">Create new folder</a>
     </div>
     <a href="/app/upload">Upload File</a>
   </div>
