@@ -9,6 +9,10 @@
   <h1><%= folder.name%></h1>
   <div>
     <h2>Files In <%= folder.name%>: </h2>
+    <div>
+      Add files to this folder: 
+      <a href="/app/file/upload/<%= folder.id%>">Upload File</a>
+    </div>
     <p>
       Modify folder <a href="/app/folder/<%= folder.id%>/update">here</a>
       <br><br>

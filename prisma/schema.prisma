@@ -34,4 +34,14 @@ model Folder {
   createdAt DateTime @default(now())
   Users     Users?   @relation(fields: [usersId], references: [id])
   usersId   String?
+  files     Files[]
+}
+
+model Files {
+  id         String   @id @default(uuid())
+  name       String
+  size       Float
+  uploadedAt DateTime @default(now())
+  folder     Folder?  @relation(fields: [folderId], references: [id])
+  folderId   String?
 }
