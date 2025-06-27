@@ -23,8 +23,17 @@ async function getFolder(id) {
   return folder;
 }
 
+async function updateFolder(name, id) {
+  const folder = await prisma.folder.update({
+    where: { id },
+    data: { name }
+  })
+  return folder;
+}
+
 module.exports = {
   createFolder,
   getUserFolders,
   getFolder,
+  updateFolder,
 }

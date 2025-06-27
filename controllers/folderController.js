@@ -12,5 +12,14 @@ module.exports = {
     const id = req.params.folderId;
     const folder = await folderService.getFolder(id);
     res.render('folder-page', { folder })
+  },
+  getUpdateFolderForm: (req, res, next) => {
+    res.render('folder-update-form');
+  },
+  updateFolder: async (req, res, next) => {
+    const id = req.params.folderId;
+    const newName = req.body.folderName
+    const folder = await folderService.updateFolder(newName, id);
+    res.redirect(`/app/folder/${id}`)
   }
 }
