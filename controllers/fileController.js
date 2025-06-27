@@ -1,5 +1,8 @@
-const upload = require('../config/uploadStorage')
+const multer = require('multer');
+const storage = multer.memoryStorage()
+const upload = multer({ storage: storage });
 const fileService = require('../queries/file')
+const cloudStorage = require('../utils/cloudStorage')
 
 module.exports = {
   getUploadForm: (req, res, next) => {
@@ -11,6 +14,7 @@ module.exports = {
       size: req.file.size,
       folderId: req.params.folderId,
     }
+    await cloudStorage.uploadFile(req.user.id, req.file);
     await fileService.createFile(file)
     res.send('File uploaded')
   }],

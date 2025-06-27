@@ -13,7 +13,8 @@
       <% files.forEach((file) => { %>
         <p>
           <%= file.name%> <br><br>
-          <a href="/app/file/<%= file.id%>">View File Details</a>
+          <a href="/app/file/<%= file.id%>">View File Details</a><br><br>
+          <a href="/file/<%= file.id%>/download">Download file</a>
         </p>
       <% }) %>
       <% } %>
