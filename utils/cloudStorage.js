@@ -14,10 +14,21 @@ async function uploadFile(userId, file) {
   return data;
 }
 
-async function downloadFile(id) {
-
+async function downloadFile(filePath) {
+  const { data, error } = await supabase
+  .storage
+  .from('user-files')
+  .getPublicUrl(filePath, {
+    download: true
+  })
+  if(error) {
+    console.error(error);
+    return error
+  };
+  return data.publicUrl;
 }
 
 module.exports = {
   uploadFile,
+  downloadFile,
 }

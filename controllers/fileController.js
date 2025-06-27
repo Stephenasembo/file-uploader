@@ -24,4 +24,11 @@ module.exports = {
     const file = await fileService.getFile(id);
     res.render('file-page', { file })
   },
+  downloadFile: async(req, res, next) => {
+    const id = req.params.fileId;
+    const file = await fileService.getFile(id)
+    const filePath = file.storagePath;
+    const publicUrl = await cloudStorage.downloadFile(filePath)
+    res.redirect(publicUrl)
+  }
 }
