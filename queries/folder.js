@@ -16,7 +16,15 @@ async function createFolder(name, userId) {
   return folder;
 }
 
+async function getFolder(id) {
+  const folder = await prisma.folder.findFirst({
+    where: { id }
+  })
+  return folder;
+}
+
 module.exports = {
   createFolder,
   getUserFolders,
+  getFolder,
 }
