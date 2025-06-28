@@ -2,7 +2,7 @@ const multer = require('multer');
 const storage = multer.memoryStorage()
 const upload = multer({ storage: storage });
 const fileService = require('../queries/file')
-const cloudStorage = require('../utils/cloudStorage')
+const cloudStorage = require('../utils/cloudStorage');
 
 module.exports = {
   getUploadForm: (req, res, next) => {
@@ -28,8 +28,8 @@ module.exports = {
     const id = req.params.fileId;
     const file = await fileService.getFile(id)
     const filePath = file.storagePath;
-    const publicUrl = await cloudStorage.downloadFile(filePath)
-    res.redirect(publicUrl)
+    await cloudStorage.downloadFile(filePath)
+    res.send('Done')
   },
   deleteFile: async (req, res, next) => {
     const id = req.params.fileId;
