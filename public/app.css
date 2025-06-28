@@ -5,3 +5,8 @@ body {
 h1 {
   text-align: center;
 }
+
+.linkBtn {
+  text-decoration: none;
+  color: black;
+}

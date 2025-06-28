@@ -3,23 +3,27 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/app.css">
   <title>Document</title>
 </head>
 <body>
-  <h1>Welcome to the homepage</h1>
   <div>
+    <h1>Homepage</h1>
     <div>
-      <h2>Folders:</h2>
+      <a href="/app/folder/create">Create new folder</a>
+      <a href="/auth/logout">Logout</a>
+    </div>
+    <div class="dashboard">
       <% if(folders.length !== 0) { %>
-        <p>
+        <p>You currently have <%= folders.length%> folders</p>
+        <p class="folder">
           <% folders.forEach((folder) => { %>
-            <a href="/app/folder/<%= folder.id%>"><%= folder.name%></a>
+          <img src="/images/file-multiple.svg" width="16" height="16">
+          <a class="linkBtn" href="/app/folder/<%= folder.id%>"><%= folder.name%></a>
           <% }) %>
         </p>
       <% } %>
-    <a href="/app/folder/create">Create new folder</a>
     </div>
   </div>
-  <a href="/auth/logout">Logout</a>
 </body>
 </html>
