@@ -1,0 +1,25 @@
+ul {
+  list-style-type: none;
+  padding-left: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.file {
+  border: 1px solid black;
+  border-radius: 1rem;
+  padding: 1rem;
+  flex: 1;
+}
+
+.name {
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.fileLinks {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  justify-items: center;
+}

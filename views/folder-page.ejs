@@ -4,31 +4,35 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="/app.css">
+  <link rel="stylesheet" href="/folder.css">
   <title>Document</title>
 </head>
 <body>
   <h1><%= folder.name%></h1>
   <div>
+    <a class="linkBtn" href="/app/file/upload/<%= folder.id%>">Upload File</a>
+    <a class="linkBtn" href="/app/folder/<%= folder.id%>/update">Modify Folder</a>
+    <a class="linkBtn" href="/app/folder/<%= folder.id%>/delete">Delete File</a>
+    <a href="/app" class="linkBtn">Home</a>
+  </div>
+  <div>
     <h2>Files In <%= folder.name%>: </h2>
-    <% if(files.length !== 0) { %>
-      <% files.forEach((file) => { %>
-        <p>
-          <%= file.name%> <br><br>
-          <a class="linkBtn" href="/app/file/<%= file.id%>">View File Details</a><br><br>
-          <a class="linkBtn" href="/app/file/download/<%= file.id%>">Download file</a>
-          <a class="linkBtn" href="/app/file/delete/<%= file.id%>">Delete File</a>
-        </p>
-      <% }) %>
-      <% } %>
-    <div>
-      Add files to this folder: 
-      <a class="linkBtn" href="/app/file/upload/<%= folder.id%>">Upload File</a>
-    </div>
-    <p>
-      Modify folder <a class="linkBtn" href="/app/folder/<%= folder.id%>/update">here</a>
-      <br><br>
-      Delete folder <a class="linkBtn" href="/app/folder/<%= folder.id%>/delete">here</a>
-    </p>
+    <ul>
+      <% if(files.length !== 0) { %>
+        <% files.forEach((file) => { %>
+          <li class="file">
+            <span class="name">
+              <%= file.name%>
+              <a class="linkBtn" href="/app/file/<%= file.id%>">View Details</a>
+            </span>
+            <span class="fileLinks">
+              <a class="linkBtn" href="/app/file/download/<%= file.id%>">Download file</a>
+              <a class="linkBtn" href="/app/file/delete/<%= file.id%>">Delete File</a>
+            </span>
+          </li>
+        <% }) %>
+        <% } %>
+    </ul>
   </div>
 </body>
 </html>
