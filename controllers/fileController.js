@@ -6,7 +6,8 @@ const cloudStorage = require('../utils/cloudStorage');
 
 module.exports = {
   getUploadForm: (req, res, next) => {
-    res.render('upload-form')
+    const { folderId } = req.params
+    res.render('upload-form', { folderId })
   },
   uploadFile: [upload.single('userFile'), async(req, res, next) => {
     const file = {
@@ -17,7 +18,7 @@ module.exports = {
     const uploadedFile = await cloudStorage.uploadFile(req.user.id, req.file);
     file.storagePath = uploadedFile.path
     await fileService.createFile(file)
-    res.send('File uploaded')
+    res.redirect(`/app/folder/${file.folderId}`)
   }],
   getFileDetails: async(req, res, next) => {
     const id = req.params.fileId;
@@ -28,8 +29,11 @@ module.exports = {
     const id = req.params.fileId;
     const file = await fileService.getFile(id)
     const filePath = file.storagePath;
-    await cloudStorage.downloadFile(filePath)
-    res.send('Done')
+    const { error, url } = await cloudStorage.downloadFile(filePath)
+    if(error) {
+      return res.status(500).render('server-error-page')
+    }
+    res.redirect(url)
   },
   deleteFile: async (req, res, next) => {
     const id = req.params.fileId;

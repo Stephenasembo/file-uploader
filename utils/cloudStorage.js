@@ -22,7 +22,11 @@ async function downloadFile(filePath) {
   .createSignedUrl(filePath, 120, {
     download: true,
   })
-  if(error) return console.error(error);
+  if(error) {
+    console.error(error)
+    return {error}
+  };
+  return { url: data.signedUrl }
 }
 
 async function deleteFile(storagePath) {
