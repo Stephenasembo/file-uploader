@@ -19,10 +19,16 @@
       <label for="username">
         Enter your username*: 
         <input type="text" name="username" id="username" required>
+        <% if(error === 'username') { %>
+          <span class="error">Username not found</span>
+        <% } %>
       </label>
       <label for="password">
         Enter your password*:
         <input type="password" name="password" id="password" required>
+        <% if(error === 'password') { %>
+          <span class="error">Incorrect password</span>
+        <% } %>
       </label>
       <button type="submit">Login</button>
     </form>
