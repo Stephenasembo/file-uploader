@@ -9,7 +9,8 @@ const strategy = async (username, password, done) => {
   if(!user) {
     return done(null, false, { message: 'Username not found' })
   }
-  if(!passwordUtil.verifyPassword) {
+  const isMatch = await passwordUtil.verifyPassword(password, user.password)
+  if(!isMatch) {
     return done(null, false, { message: 'Incorrect password' });
   }
   done(null, user);
