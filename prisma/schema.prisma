@@ -42,7 +42,7 @@ model Files {
   name        String
   size        Float
   uploadedAt  DateTime @default(now())
-  folder      Folder?  @relation(fields: [folderId], references: [id])
-  folderId    String?
+  folder      Folder   @relation(fields: [folderId], references: [id], onDelete: Cascade)
+  folderId    String
   storagePath String
 }

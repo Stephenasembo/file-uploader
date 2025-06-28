@@ -1,5 +1,6 @@
 const folderService = require('../queries/folder')
 const fileService = require('../queries/file')
+const cloudStorage = require('../utils/cloudStorage')
 
 module.exports = {
   getCreateFolderForm: (req, res, next) => {
@@ -26,7 +27,8 @@ module.exports = {
   },
   deleteFolder: async (req, res, next) => {
     const id = req.params.folderId;
-    const folder = await folderService.deleteFolder(id);
+    const folderFiles = await folderService.deleteFolder(id);
+    await cloudStorage.deleteFolderFiles(folderFiles);
     res.redirect('/app')
   },
 }

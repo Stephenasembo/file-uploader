@@ -1,4 +1,5 @@
 const { PrismaClient } = require('../generated/prisma');
+const { getFolderFiles } = require('./file');
 
 const prisma = new PrismaClient()
 
@@ -32,10 +33,11 @@ async function updateFolder(name, id) {
 }
 
 async function deleteFolder(id) {
+  const folderFiles = await getFolderFiles(id);
   const folder = await prisma.folder.delete({
     where: { id }
   })
-  return folder;
+  return folderFiles;
 }
 
 module.exports = {

@@ -37,8 +37,20 @@ async function deleteFile(storagePath) {
   return;
 }
 
+async function deleteFolderFiles(files) {
+  const paths = files.map((file) => file.storagePath)
+  const { data, error } = await supabase
+  .storage
+  .from('user-files')
+  .remove(paths)
+  if(error) return console.error(error)
+  return;
+
+}
+
 module.exports = {
   uploadFile,
   downloadFile,
   deleteFile,
+  deleteFolderFiles,
 }
