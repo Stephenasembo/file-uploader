@@ -8,21 +8,24 @@
   <title>Document</title>
 </head>
 <body>
-  <div>
+  <div class="container">
     <h1>Login</h1>
+    <div>
+      <a href="/">Home</a>
+    </div>
     <p>Log in to your account</p>
     <form action="/auth/login" method="post">
+      <p>Fields marked with an asterisk(*)</p>
       <label for="username">
-        Username: 
+        Enter your username*: 
         <input type="text" name="username" id="username" required>
       </label>
       <label for="password">
-        Password: 
+        Enter your password*:
         <input type="password" name="password" id="password" required>
       </label>
       <button type="submit">Login</button>
     </form>
-    <a href="/">Home</a>
   </div>
 </body>
 </html>
