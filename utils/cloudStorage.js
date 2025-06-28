@@ -28,7 +28,17 @@ async function downloadFile(filePath) {
   return data.publicUrl;
 }
 
+async function deleteFile(storagePath) {
+  const { data, error } = await supabase
+  .storage
+  .from('user-files')
+  .remove([storagePath])
+  if(error) return console.error(error)
+  return;
+}
+
 module.exports = {
   uploadFile,
   downloadFile,
+  deleteFile,
 }

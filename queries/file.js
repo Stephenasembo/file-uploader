@@ -25,8 +25,15 @@ async function getFile(id) {
   return file;
 }
 
+async function deleteFile(id) {
+  const file = await prisma.files.delete({
+    where: { id }
+  })
+}
+
 module.exports = {
   getFolderFiles,
   createFile,
   getFile,
+  deleteFile,
 }

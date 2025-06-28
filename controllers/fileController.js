@@ -30,5 +30,12 @@ module.exports = {
     const filePath = file.storagePath;
     const publicUrl = await cloudStorage.downloadFile(filePath)
     res.redirect(publicUrl)
+  },
+  deleteFile: async (req, res, next) => {
+    const id = req.params.fileId;
+    const file = await fileService.getFile(id)
+    await cloudStorage.deleteFile(file.storagePath);
+    await fileService.deleteFile(file.id);
+    res.send('File deleted successfully');
   }
 }

@@ -30,7 +30,7 @@ model Session {
 
 model Folder {
   id        String   @id @default(uuid())
-  name      String   @unique
+  name      String
   createdAt DateTime @default(now())
   Users     Users?   @relation(fields: [usersId], references: [id])
   usersId   String?
@@ -44,5 +44,5 @@ model Files {
   uploadedAt  DateTime @default(now())
   folder      Folder?  @relation(fields: [folderId], references: [id])
   folderId    String?
-  storagePath String?
+  storagePath String
 }

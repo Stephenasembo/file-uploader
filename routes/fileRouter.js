@@ -5,5 +5,6 @@ router.get('/upload/:folderId', controller.getUploadForm)
 router.post('/upload/:folderId', controller.uploadFile)
 router.get('/:fileId', controller.getFileDetails)
 router.get('/download/:fileId', controller.downloadFile)
+router.get('/delete/:fileId', controller.deleteFile)
 
 module.exports = router;
