@@ -46,6 +46,9 @@ app.use('/', indexRouter)
 app.use('/auth', authRouter);
 app.use('/app', appRouter);
 
+app.use('/', (req, res, next) => {
+  res.render('404-page')
+})
 app.listen(PORT, () => {
   console.log(`The app is live on port - ${PORT}`)
 })
