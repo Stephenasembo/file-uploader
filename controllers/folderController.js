@@ -7,8 +7,8 @@ module.exports = {
     res.render('folder-form')
   },
   createFolder: async(req, res, next) => {
-    await folderService.createFolder(req.body.folderName, req.user.id)
-    res.send('Folder created')
+    const folder = await folderService.createFolder(req.body.folderName, req.user.id)
+    res.redirect(`/app/folder/${folder.id}`);
   },
   getFolderPage: async(req, res, next) => {
     const id = req.params.folderId;

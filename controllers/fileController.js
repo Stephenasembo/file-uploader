@@ -40,6 +40,6 @@ module.exports = {
     const file = await fileService.getFile(id)
     await cloudStorage.deleteFile(file.storagePath);
     await fileService.deleteFile(file.id);
-    res.send('File deleted successfully');
+    res.redirect(`/app/folder/${file.folderId}`);
   }
 }
