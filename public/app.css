@@ -8,5 +8,9 @@ h1 {
 
 .linkBtn {
   text-decoration: none;
-  color: black;
+  color: white;
+  background-color: rgb(110, 108, 108);
+  border: 1px solid black;
+  padding: 0.25rem;
+  border-radius: 0.5rem;
 }

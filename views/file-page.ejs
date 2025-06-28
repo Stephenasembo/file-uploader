@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/app.css">
   <title>Document</title>
 </head>
 <body>
@@ -11,8 +12,8 @@
     name: <%= file.name%> <br><br>
     size: <%= file.size%> bytes. <br><br>
     Uploaded at: <%= file.uploadedAt%> <br><br>
-    <a href="/app/file/download/<%= file.id%>">Download file</a>
-    <a href="/app/file/delete/<%= file.id%>">Delete File</a>
+    <a class="linkBtn" href="/app/file/download/<%= file.id%>">Download file</a>
+    <a class="linkBtn" href="/app/file/delete/<%= file.id%>">Delete File</a>
   </div>
 </body>
 </html>
