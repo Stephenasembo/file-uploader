@@ -7,6 +7,7 @@ const indexRouter = require('./routes/indexRouter');
 const passport = require('passport');
 const authRouter = require('./routes/authRouter')
 const appRouter = require('./routes/appRouter')
+const path = require('path');
 
 const app = express();
 
@@ -34,6 +35,7 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
+app.use(express.static(path.join(__dirname, 'public')))
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json());
 
