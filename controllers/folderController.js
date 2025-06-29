@@ -43,7 +43,7 @@ module.exports = {
     const folder = await folderService.getFolder(folderId)
     const shareLink = await shareService.generateShareLink(userId, folderId, expiryDate)
     console.log(shareLink)
-    const url = `https://localhost:8080/share/${shareLink.id}`;
+    const url = `http://localhost:8080/share/${shareLink.id}`;
     res.render('share-folder', { url, folder })
   },
 }

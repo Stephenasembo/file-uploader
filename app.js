@@ -8,6 +8,7 @@ const passport = require('passport');
 const authRouter = require('./routes/authRouter')
 const appRouter = require('./routes/appRouter')
 const path = require('path');
+const shareRouter = require('./routes/shareRouter');
 
 const app = express();
 
@@ -45,6 +46,8 @@ app.set('view engine', 'ejs')
 app.use('/', indexRouter)
 app.use('/auth', authRouter);
 app.use('/app', appRouter);
+
+app.use('/share', shareRouter);
 
 app.use('/', (req, res, next) => {
   res.render('404-page')

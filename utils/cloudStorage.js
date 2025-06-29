@@ -49,9 +49,22 @@ async function deleteFolderFiles(files) {
 
 }
 
+async function generateShareLink(duration, filePaths) {
+  const { data, error } = await supabase
+  .storage
+  .from(store)
+  .createSignedUrls(filePaths, duration)
+  if (error) {
+    console.error(error)
+    return null;
+  }
+  return data;
+}
+
 module.exports = {
   uploadFile,
   downloadFile,
   deleteFile,
   deleteFolderFiles,
+  generateShareLink,
 }
