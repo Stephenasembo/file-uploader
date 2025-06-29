@@ -20,10 +20,10 @@ module.exports = {
     const files = await fileService.getFolderFiles(link.folderId);
     const filePaths = files.map((file) => file.storagePath);
     const fileArr = await cloudStorage.generateShareLink(validityDuration, filePaths);
-    const displayFiles = files.map((file, i) => ({name: file.name, url: fileArr[i].signedUrl}))
     if (!fileArr) {
       return res.status(500).render('server-error-page')
     }
+    const displayFiles = files.map((file, i) => ({name: file.name, url: fileArr[i].signedUrl}))
     res.render('shared-folder', { displayFiles, folder, user })
   }
 }
