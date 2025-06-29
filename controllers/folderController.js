@@ -42,8 +42,7 @@ module.exports = {
     let expiryDate = new Date(Date.now() + duration * 60 * 60 * 24 * 1000);
     const folder = await folderService.getFolder(folderId)
     const shareLink = await shareService.generateShareLink(userId, folderId, expiryDate)
-    console.log(shareLink)
-    const url = `http://localhost:8080/share/${shareLink.id}`;
+    const url = `${req.protocol}://${req.get('host')}/share/${shareLink.id}`
     res.render('share-folder', { url, folder })
   },
 }

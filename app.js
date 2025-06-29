@@ -14,6 +14,8 @@ const app = express();
 
 const PORT = process.env.PORT || 3000;
 
+app.set('trust proxy', true);
+
 app.use(
   expressSession({
     cookie: {
@@ -46,7 +48,6 @@ app.set('view engine', 'ejs')
 app.use('/', indexRouter)
 app.use('/auth', authRouter);
 app.use('/app', appRouter);
-
 app.use('/share', shareRouter);
 
 app.use('/', (req, res, next) => {
