@@ -8,7 +8,6 @@ module.exports = {
   },
   getLoginForm: (req, res, next) => {
     let error;
-    console.log(req.session.messages)
     if(req.session.messages) {
       const loginError = req.session.messages[0]
       if (loginError === 'Username not found') {

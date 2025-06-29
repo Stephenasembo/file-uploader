@@ -15,10 +15,11 @@ datasource db {
 }
 
 model Users {
-  id       String   @id @default(uuid())
-  username String   @unique
-  password String
-  folders  Folder[]
+  id        String       @id @default(uuid())
+  username  String       @unique
+  password  String
+  folders   Folder[]
+  shareLink ShareLinks[]
 }
 
 model Session {
@@ -29,12 +30,13 @@ model Session {
 }
 
 model Folder {
-  id        String   @id @default(uuid())
+  id        String      @id @default(uuid())
   name      String
-  createdAt DateTime @default(now())
-  Users     Users?   @relation(fields: [usersId], references: [id])
+  createdAt DateTime    @default(now())
+  Users     Users?      @relation(fields: [usersId], references: [id])
   usersId   String?
   files     Files[]
+  shareLink ShareLinks?
 }
 
 model Files {
@@ -45,4 +47,14 @@ model Files {
   folder      Folder   @relation(fields: [folderId], references: [id], onDelete: Cascade)
   folderId    String
   storagePath String
+}
+
+model ShareLinks {
+  id          String   @id @default(uuid())
+  folder      Folder   @relation(fields: [folderId], references: [id], onDelete: Cascade)
+  folderId    String   @unique
+  expiresAt   DateTime
+  createdAt   DateTime @default(now())
+  createdBy   Users    @relation(fields: [createdById], references: [id], onDelete: Cascade)
+  createdById String
 }

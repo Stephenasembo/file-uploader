@@ -1,6 +1,7 @@
 const folderService = require('../queries/folder')
 const fileService = require('../queries/file')
 const cloudStorage = require('../utils/cloudStorage')
+const shareService = require('../queries/share')
 
 module.exports = {
   getCreateFolderForm: (req, res, next) => {
@@ -30,5 +31,19 @@ module.exports = {
     const folderFiles = await folderService.deleteFolder(id);
     await cloudStorage.deleteFolderFiles(folderFiles);
     res.redirect('/app')
+  },
+  getShareFolderPage: (req, res, next) => {
+    res.render('share-folder-form');
+  },
+  shareFolder: async(req, res, next) => {
+    const { duration } = req.body;
+    const { folderId } = req.params;
+    const userId = req.user.id;
+    let expiryDate = new Date(Date.now() + duration * 60 * 60 * 24 * 1000);
+    const folder = await folderService.getFolder(folderId)
+    const shareLink = await shareService.generateShareLink(userId, folderId, expiryDate)
+    console.log(shareLink)
+    const url = `https://localhost:8080/share/${shareLink.id}`;
+    res.render('share-folder', { url, folder })
   },
 }

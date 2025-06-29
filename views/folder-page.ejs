@@ -16,23 +16,33 @@
     <a href="/app" class="linkBtn">Home</a>
   </div>
   <div>
-    <h2>Files In <%= folder.name%>: </h2>
-    <ul>
-      <% if(files.length !== 0) { %>
-        <% files.forEach((file) => { %>
-          <li class="file">
-            <span class="name">
-              <%= file.name%>
-              <a class="linkBtn" href="/app/file/<%= file.id%>">View Details</a>
-            </span>
-            <span class="fileLinks">
-              <a class="linkBtn" href="/app/file/download/<%= file.id%>">Download file</a>
-              <a class="linkBtn" href="/app/file/delete/<%= file.id%>">Delete File</a>
-            </span>
-          </li>
-        <% }) %>
-        <% } %>
-    </ul>
+    <% if (files.length !== 0) { %>
+      <h2>Files In <%= folder.name%>: </h2>
+      <ul>
+          <% files.forEach((file) => { %>
+            <li class="file">
+              <span class="name">
+                <%= file.name%>
+                <a class="linkBtn" href="/app/file/<%= file.id%>">View Details</a>
+              </span>
+              <span class="fileLinks">
+                <a class="linkBtn" href="/app/file/download/<%= file.id%>">Download file</a>
+                <a class="linkBtn" href="/app/file/delete/<%= file.id%>">Delete File</a>
+              </span>
+            </li>
+          <% }) %>
+      </ul>
+      <p>
+        Share this folder and its contents to others.
+        <a class="linkBtn" href="/app/folder/<%= folder.id%>/share">Share folder</a>
+      </p>
+    <% } else { %>
+      <p>
+        This folder is empty.
+        <br><br>
+        <a class="linkBtn" href="/app/file/upload/<%= folder.id%>">Upload File</a>
+      </p>
+      <% } %>
   </div>
 </body>
 </html>

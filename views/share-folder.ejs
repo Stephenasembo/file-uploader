@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/app.css">
+  <title>Document</title>
+</head>
+<body>
+  <h1>Share Folder</h1>
+  <div>
+    You can now share <%= folder.name%> folder with anyone.
+    <br><br>
+    Share with anyone by giving them this link: 
+    <a href="<%= url%>">Share folder</a>
+    <br><br>
+    Go back to <a href="/app/folder/<%= folder.id%>">folder</a>
+    <a href="/app">Home</a>
+  </div>
+</body>
+</html>
