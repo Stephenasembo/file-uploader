@@ -11,7 +11,7 @@ async function uploadFile(userId, file) {
   const { data, error } = await supabase.storage
     .from(store)
     .upload(uploadLocation, file.buffer)
-  if(error) return error;
+  if(error) return console.error(error);
   return data;
 }
 
